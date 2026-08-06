@@ -1,0 +1,6 @@
+smolagents>=1.26.0
+litellm
+streamlit
+python-dotenv
+duckduckgo-search
+markdownify
