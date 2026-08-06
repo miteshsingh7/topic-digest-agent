@@ -1,6 +1,7 @@
 smolagents>=1.26.0
-litellm
+openai
 streamlit
 python-dotenv
+ddgs
 duckduckgo-search
 markdownify

@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 st.title("🔬 Topic Digest Agent")
-st.caption("AI-Powered Research Assistant (ReAct Framework)")
+st.caption("AI-Powered Research Assistant (ReAct Framework - Fast Mode)")
 
 api_key = os.getenv("GROQ_API_KEY", "")
 if not api_key:
@@ -28,17 +28,7 @@ if "final_digest" not in st.session_state:
 if "steps_log" not in st.session_state:
     st.session_state.steps_log = []
 
-col_topic, col_model = st.columns([3, 1])
-with col_topic:
-    topic = st.text_input("Enter Research Topic", placeholder="e.g. Applications of Quantum Computing in Drug Discovery")
-with col_model:
-    model_choice = st.selectbox(
-        "Model",
-        ["llama-3.3-70b", "mixtral-8x7b"],
-        index=0
-    )
-
-selected_model = "groq/llama-3.3-70b-versatile" if model_choice == "llama-3.3-70b" else "groq/mixtral-8x7b-32768"
+topic = st.text_input("Enter Research Topic", placeholder="e.g. Applications of Quantum Computing in Drug Discovery")
 
 col1, col2 = st.columns([1, 4])
 with col1:
@@ -57,13 +47,13 @@ if start_btn and topic:
     st.session_state.final_digest = ""
     st.session_state.steps_log = []
     
-    status_box = st.status("🔬 Agent is conducting research...", expanded=True)
+    status_box = st.status("🔬 Agent is conducting fast research...", expanded=True)
     
     with status_box:
-        st.write("Initializing smolagents CodeAgent with Groq LLM...")
-        agent = create_agent(api_key=api_key, model_id=selected_model)
+        st.write("Initializing fast agent with llama-3.1-8b-instant (Groq API)...")
+        agent = create_agent(api_key=api_key, model_id="llama-3.1-8b-instant")
         
-        st.write("Executing ReAct research loop (Search → Visit → Extract → Verify → Synthesize)...")
+        st.write("Executing 3-step ReAct research loop...")
         try:
             result = agent.run(topic)
             st.session_state.final_digest = str(result)

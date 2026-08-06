@@ -15,6 +15,7 @@ HIGH_CREDIBILITY = {
 }
 
 MEDIUM_CREDIBILITY = {
+    "ibm.com", "microsoft.com", "google.com", "apple.com",
     "nytimes.com", "theguardian.com", "washingtonpost.com",
     "wsj.com", "economist.com", "forbes.com", "bloomberg.com",
     "cnn.com", "cnbc.com", "aljazeera.com", "dw.com",
