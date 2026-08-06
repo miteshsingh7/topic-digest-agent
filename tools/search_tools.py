@@ -2,12 +2,12 @@ from smolagents import tool, DuckDuckGoSearchTool
 import requests
 from markdownify import markdownify
 
-search_tool = DuckDuckGoSearchTool(max_results=5)
+search_tool = DuckDuckGoSearchTool(max_results=3)
 
 @tool
 def visit_webpage(url: str) -> str:
     """Fetches full page text content from a given web URL, including Wikipedia.
-    Converts HTML to clean text and returns up to 6000 characters for detailed analysis.
+    Converts HTML to clean text and returns up to 3500 characters for detailed analysis.
     
     Args:
         url: The full webpage URL to visit and read.
@@ -23,7 +23,7 @@ def visit_webpage(url: str) -> str:
         lines = [line.strip() for line in text.splitlines() if line.strip()]
         clean_text = "\n".join(lines)
         
-        max_chars = 6000
+        max_chars = 3500
         if len(clean_text) > max_chars:
             clean_text = clean_text[:max_chars] + "\n... [content truncated for detail]"
             

@@ -27,13 +27,13 @@ Your final output MUST be comprehensive and structured as follows:
 Do not provide brief or superficial summaries. Provide rich, thorough research.
 """
 
-def create_agent(api_key: str = None):
+def create_agent(api_key: str = None, model_id: str = "groq/llama-3.3-70b-versatile"):
     key = api_key or os.getenv("GROQ_API_KEY", "")
     if key:
         os.environ["GROQ_API_KEY"] = key
     
     model = LiteLLMModel(
-        model_id="groq/llama-3.3-70b-versatile",
+        model_id=model_id,
         api_key=key,
         temperature=0.2,
         max_tokens=4096

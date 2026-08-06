@@ -11,17 +11,16 @@ def extract_key_facts(text: str, topic: str) -> str:
         text: The raw text content from a webpage to extract facts from.
         topic: The research topic to focus the extraction on.
     """
-    max_chars = 6000
+    max_chars = 3500
     if len(text) > max_chars:
         text = text[:max_chars] + "\n... [truncated]"
     
     prompt = f"""Extract detailed, comprehensive key facts from the text below regarding the topic: "{topic}"
 
 Instructions:
-- Provide 8 to 12 detailed, informative bullet points
+- Provide 6 to 10 detailed, informative bullet points
 - Include specific data, dates, technical details, statistics, and concepts where present
 - Explain the background and context for each point
-- Organize by key themes if appropriate
 
 Text:
 {text}
@@ -35,7 +34,7 @@ Detailed Key Facts:"""
             messages=[{"role": "user", "content": prompt}],
             api_key=api_key,
             temperature=0.2,
-            max_tokens=1200
+            max_tokens=800
         )
         return response.choices[0].message.content
     except Exception as e:
